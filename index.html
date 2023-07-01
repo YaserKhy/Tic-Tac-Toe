@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
-    <p id="result"></p>
+    <p id="result">Player 1 Turn</p>
     <table id="board">
         <tr>
             <td id="0" onclick="play(id)"></td>
@@ -27,6 +27,8 @@
             <td id="8" onclick="play(id)"></td>
         </tr>
     </table>
+    <br>
+    <button id="reset" onclick="resetGame()"> <img src="reseticon.png" width="30px" height="30px"> </button>
 </body>
 <script src="script.js"></script>
 </html>
