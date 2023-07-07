@@ -1,16 +1,16 @@
 let arr = [0,1,2,3,4,5,6,7,8];
-let turn = true;
+let turn = true; // true = x , false = o.
 let msg = document.getElementById("result");
 let board = document.getElementById("board");
 
 document.querySelectorAll("td").forEach(e => e.addEventListener("mouseenter",function() {
-    if (turn === true) {
-        e.style.backgroundColor = "#FFABAB";
+    if (turn === true && e.innerHTML==="") {
+        e.style.backgroundColor = "#FFABAB"; // lightred
         e.style.transition = "0.5s";
     }
 
-    if(turn === false) {
-        e.style.backgroundColor = "#8AECFF";
+    if(turn === false && e.innerHTML==="") {
+        e.style.backgroundColor = "#8AECFF"; // light blue
         e.style.transition = "0.5s";
     }
 }));
@@ -21,9 +21,9 @@ document.querySelectorAll("td").forEach(e => e.addEventListener("mouseleave",fun
 }));
 
 function play(n) {
-    if(turn && typeof arr[n] === "number") {
+    if(turn === true && typeof arr[n] === "number") {
         arr[n] = "X";
-        document.getElementById(n).innerHTML = "<img src=\"cross.svg\" width=\"50px\" height=\"50px\">";
+        document.getElementById(n).innerHTML = "<img src=cross.svg width=50px height=50px>";
         if (check()) { return; }
         turn = (!turn);
         msg.innerText = "Player 2 Turn";
@@ -31,12 +31,12 @@ function play(n) {
 
     if (turn === false && typeof arr[n] === "number") {
         arr[n] = "O";
-        document.getElementById(n).innerHTML = "<img src=\"circle.png\" width=\"50px\" height=\"50px\">";
+        document.getElementById(n).innerHTML = "<img src=circle.png width=50px height=50px>";
         check();
         if (check()) { return; }
         turn = (!turn);
         msg.innerText = "Player 1 Turn";
-    };
+    }
 }
 
 function check() {
@@ -62,7 +62,7 @@ function check() {
 
     // check Diagonals
     if( (arr[0] === arr[4] && arr[4] === arr[8]) || (arr[2] === arr[4] && arr[4] === arr[6]) ) {
-        if(arr[0] === "X") {msg.innerText = "Player 1 wins !";}
+        if(arr[4] === "X") {msg.innerText = "Player 1 wins !";}
         else {msg.innerText = "Player 2 wins !";}
         board.style.pointerEvents = "none";
         return true;
